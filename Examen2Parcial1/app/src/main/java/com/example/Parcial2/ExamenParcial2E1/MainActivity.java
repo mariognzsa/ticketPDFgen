@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -180,5 +181,13 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Permiso denegado", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+    public void sendMail(){
+        EditText editText = (EditText)findViewById(R.id.email_to);
+        String mEmail = editText.getText().toString().trim();
+        String mSubject = "Ticket de compra de la orden";
+        String mMessage = "Adjuntamos el documento PDF con el ticket de la compra realizada. Saludos cordiales. ";
+        JavaMailAPI javaMailAPI = new JavaMailAPI(this, mEmail, mSubject, mMessage);
+        javaMailAPI.execute();
     }
 }

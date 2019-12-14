@@ -23,5 +23,26 @@
         android:focusable="false"
         android:onClick="pdfView"
         android:text="Generar Ticket" />
+
+    <EditText
+        android:id="@+id/email_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:hint="Send to"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:focusable="false"
+        android:onClick="sendMail"
+        android:text="Mandar por correo" />
+
 </RelativeLayout>
 
