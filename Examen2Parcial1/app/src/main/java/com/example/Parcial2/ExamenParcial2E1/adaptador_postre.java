@@ -63,6 +63,12 @@ public class adaptador_postre extends ArrayAdapter<postre> {
         nameTextView.setText(currentDesert.getDessertName());
 
         // Find the TextView in the list_item.xml layout with the ID version_number
+        TextView amountTextView = (TextView) listItemView.findViewById(R.id.dessert_amount);
+        // Get the version number from the current postre object and
+        // set this text on the number TextView
+        amountTextView.setText(String.valueOf(currentDesert.getDessertAmount()));
+
+        // Find the TextView in the list_item.xml layout with the ID version_number
         TextView numberTextView = (TextView) listItemView.findViewById(R.id.dessert_number);
         // Get the version number from the current postre object and
         // set this text on the number TextView

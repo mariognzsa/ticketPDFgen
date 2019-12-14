@@ -1,5 +1,6 @@
 package com.example.Parcial2.ExamenParcial2E1;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Environment;
 import android.util.Log;
 
@@ -26,10 +27,10 @@ public class TemplatePDF {
     private Document document;
     private PdfWriter pdfwriter;
     private Paragraph paragraph;
-    private Font fontTitle = new Font(Font.FontFamily.HELVETICA, 20, Font.BOLD);
-    private Font fontSubTitle = new Font(Font.FontFamily.HELVETICA, 18, Font.BOLDITALIC);
-    private Font fontText = new Font(Font.FontFamily.HELVETICA, 14, Font.NORMAL);
-    private Font fontHighlighted = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD, BaseColor.DARK_GRAY);
+    private Font fontTitle = new Font(Font.FontFamily.COURIER, 20, Font.BOLD);
+    private Font fontSubTitle = new Font(Font.FontFamily.COURIER, 18, Font.BOLDITALIC);
+    private Font fontText = new Font(Font.FontFamily.COURIER, 14, Font.NORMAL);
+    private Font fontHighlighted = new Font(Font.FontFamily.COURIER, 14, Font.BOLD, BaseColor.DARK_GRAY);
 
     public TemplatePDF(Context context) {
         this.context = context;
@@ -48,7 +49,9 @@ public class TemplatePDF {
     private void createFile(){
         Random random = new Random();
         String filename = "PDF_Ticket_"+random.nextInt(1000)+".pdf";
-        File folder = new File(Environment.getExternalStorageDirectory().toString(),"PDF");
+
+//        Environment.getExternalStorageDirectory().toString()
+        File folder = new File("/root/Documentos/Universidad/ticketPDFgen/documents/");
         if(!folder.exists()) folder.mkdirs();
         pdfFile = new File(folder, filename);
     }
@@ -102,7 +105,7 @@ public class TemplatePDF {
             }
             for (int index_row = 0; index_row < lines.size(); index_row++) {
                 String[] row = lines.get(index_row);
-                for (index_col = 0; index_col < lines.size(); index_col++) {
+                for (index_col = 0; index_col < header.length; index_col++) {
                     pdfPCell = new PdfPCell(new Phrase(row[index_row], fontText));
                     pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
                     pdfPCell.setFixedHeight(50);
@@ -114,6 +117,12 @@ public class TemplatePDF {
         }catch (Exception e){
             Log.e("createTable",e.toString());
         }
+    }
+    public void viewPDF(){
+        Intent intent = new Intent(context, ViewPDFActivity.class);
+        intent.putExtra("path", pdfFile.getAbsolutePath());
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
     }
 
 }

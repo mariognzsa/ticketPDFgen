@@ -10,6 +10,9 @@ public class postre {
     // Name of the desert
     private String mDessertName;
 
+    //Price
+    private int mDessertAmount;
+
     // Number of desserts
     private int mDessertNumber;
 
@@ -23,10 +26,11 @@ public class postre {
      * @param vNumber is the corresponding number of desserts
      * @param image is drawable reference ID that corresponds to the dessert
      * */
-    public postre(String vName, int vNumber, int imageResourceId)
+    public postre(String vName, int vAmount, int vNumber, int imageResourceId)
 
     {
         mDessertName = vName;
+        mDessertAmount = vAmount;
         mDessertNumber = vNumber;
         mImageResourceId = imageResourceId;
     }
@@ -37,7 +41,12 @@ public class postre {
     public String getDessertName() {
         return mDessertName;
     }
-
+    /**
+     * Get the  price of desserts
+     */
+    public int getDessertAmount() {
+        return mDessertAmount;
+    }
     /**
      * Get the  number of desserts
      */
